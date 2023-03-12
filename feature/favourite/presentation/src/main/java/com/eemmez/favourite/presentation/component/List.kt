@@ -1,4 +1,4 @@
-package com.eemmez.home.presentation.component
+package com.eemmez.favourite.presentation.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -24,13 +24,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.eemmez.home.domain.entity.ListItemEntity
+import com.eemmez.favourite.domain.entity.FavouriteItemEntity
 
 @Composable
 fun List(
-    listItems: List<ListItemEntity>,
-    onItemClick: (ListItemEntity) -> Unit,
-    onItemLongClick: (ListItemEntity) -> Unit
+    listItems: List<FavouriteItemEntity>,
+    onItemClick: (FavouriteItemEntity) -> Unit,
+    onItemLongClick: (FavouriteItemEntity) -> Unit
 ) {
     LazyColumn(Modifier.padding(top = 72.dp)) {
         items(listItems) { item ->
@@ -42,9 +42,9 @@ fun List(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListItem(
-    listItem: ListItemEntity,
-    onItemClick: (ListItemEntity) -> Unit,
-    onItemLongClick: (ListItemEntity) -> Unit
+    listItem: FavouriteItemEntity,
+    onItemClick: (FavouriteItemEntity) -> Unit,
+    onItemLongClick: (FavouriteItemEntity) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(8.dp),

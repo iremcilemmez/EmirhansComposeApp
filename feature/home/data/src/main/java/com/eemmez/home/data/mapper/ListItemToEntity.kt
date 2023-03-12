@@ -6,5 +6,5 @@ import com.eemmez.home.domain.entity.ListItemEntity
 fun ListItem.toListItemEntity(): ListItemEntity =
     ListItemEntity(
         name = name,
-        imageUrl = imageUrl
+        imageURL = imageUrl
     )

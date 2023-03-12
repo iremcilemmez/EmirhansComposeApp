@@ -6,5 +6,5 @@ import com.eemmez.home.domain.entity.ListItemEntity
 fun ListItemEntity.toFavouriteItem(): FavouriteItem =
     FavouriteItem(
         name = name,
-        imageUrl = imageUrl
+        imageUrl = imageURL
     )

@@ -34,7 +34,7 @@ class HomeRepositoryImpl @Inject constructor(
         }.onStart {
             emit(Result.Loading())
         }.catch {
-            emit(Result.Error(HomeError.Unknown))
+            emit(Result.Error(HomeError.UnknownError))
         }
 
     override fun addToFavourites(listItemEntity: ListItemEntity): Flow<Result<Unit, HomeError>> =

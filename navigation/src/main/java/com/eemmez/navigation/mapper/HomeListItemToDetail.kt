@@ -6,5 +6,5 @@ import com.vngrs.detail.domain.entity.DetailEntity
 fun ListItemEntity.toDetailEntity() =
     DetailEntity(
         name = name,
-        imageURL = imageUrl
+        imageURL = imageURL
     )

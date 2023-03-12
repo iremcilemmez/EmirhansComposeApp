@@ -5,7 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.eemmez.detail.presentation.DetailScreen
-import com.eemmez.favourite.presentation.FavouriteScreen
+import com.eemmez.detail.presentation.detailRoute
+import com.eemmez.favourite.presentation.FavouriteRoute
 import com.eemmez.home.presentation.HomeRoute
 import com.eemmez.navigation.mapper.toDetailEntity
 import com.eemmez.navigation.util.extension.getParcelable
@@ -23,19 +24,19 @@ fun Navigation(navController: NavHostController) {
             HomeRoute(
                 onItemClick = { homeListItem ->
                     navController.putParcelable("detailEntity", homeListItem.toDetailEntity())
-                    navController.navigate("detail")
+                    navController.navigate(detailRoute)
                 }
             )
         }
         composable("favourite") {
-            FavouriteScreen(
+            FavouriteRoute(
                 onItemClick = { favouriteListItem ->
                     navController.putParcelable("detailEntity", favouriteListItem.toDetailEntity())
-                    navController.navigate("detail")
+                    navController.navigate(detailRoute)
                 }
             )
         }
-        composable("detail") {
+        composable(detailRoute) {
             navController.getParcelable("detailEntity", DetailEntity::class.java)
                 ?.let { detailArgument ->
                     DetailScreen(detailArgument)

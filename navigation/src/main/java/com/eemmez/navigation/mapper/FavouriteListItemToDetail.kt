@@ -6,5 +6,5 @@ import com.vngrs.detail.domain.entity.DetailEntity
 fun FavouriteItemEntity.toDetailEntity() =
     DetailEntity(
         name = name,
-        imageURL = imageUrl
+        imageURL = imageURL
     )

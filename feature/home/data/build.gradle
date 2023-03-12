@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.10'
 }
 
 android {
@@ -45,11 +45,6 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     implementation "io.ktor:ktor-client-core:2.2.4"
-    implementation "io.ktor:ktor-client-auth:2.2.4"
-    implementation "io.ktor:ktor-client-android:2.2.4"
-    implementation "io.ktor:ktor-client-content-negotiation:2.2.4"
-    implementation "io.ktor:ktor-serialization-kotlinx-json:2.2.4"
-    implementation "io.ktor:ktor-client-logging:2.2.4"
 
     implementation "androidx.room:room-runtime:2.5.0"
     implementation "androidx.room:room-ktx:2.5.0"

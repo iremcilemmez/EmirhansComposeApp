@@ -5,14 +5,14 @@ import com.eemmez.home.presentation.R
 import com.eemmez.localization.LocalizationManager
 import javax.inject.Inject
 
-class HomeScreenErrorMapper @Inject constructor(
+class ErrorMessageMapper @Inject constructor(
     private val localizationManager: LocalizationManager
 ) {
-    fun getErrorMessage(error: HomeError?): String {
-        return when (error) {
+    fun getErrorMessage(error: HomeError?): String =
+        when (error) {
             is HomeError.GetListError -> localizationManager.getString(R.string.error_message_list_some)
             is HomeError.AddToFavouritesError -> localizationManager.getString(R.string.error_message_add_to_favourites)
             else -> localizationManager.getString(R.string.error_message_list_unknown)
         }
-    }
+
 }

@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ListItemEntity(
     val name: String,
-    val imageUrl: String
+    val imageURL: String
 ) : Parcelable

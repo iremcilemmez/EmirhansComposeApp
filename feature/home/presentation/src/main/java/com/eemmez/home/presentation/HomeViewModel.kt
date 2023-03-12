@@ -6,7 +6,7 @@ import com.eemmez.common.domain.entity.Result
 import com.eemmez.home.domain.entity.ListItemEntity
 import com.eemmez.home.domain.usecase.AddToFavouritesUseCase
 import com.eemmez.home.domain.usecase.GetListUseCase
-import com.eemmez.home.presentation.mapper.HomeScreenErrorMapper
+import com.eemmez.home.presentation.mapper.ErrorMessageMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getListUseCase: GetListUseCase,
     private val addToFavouritesUseCase: AddToFavouritesUseCase,
-    private val homeScreenErrorMapper: HomeScreenErrorMapper
+    private val errorMessageMapper: ErrorMessageMapper
 ) : ViewModel() {
 
     private val _homeScreenUiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Initial)
@@ -49,7 +49,7 @@ class HomeViewModel @Inject constructor(
 
                         is Result.Error -> {
                             _homeScreenUiState.value = HomeScreenUiState.Error(
-                                errorMessage = homeScreenErrorMapper.getErrorMessage(result.error)
+                                errorMessage = errorMessageMapper.getErrorMessage(result.error)
                             )
                         }
                     }
@@ -72,7 +72,7 @@ class HomeViewModel @Inject constructor(
 
                         is Result.Error -> {
                             _homeScreenUiState.value = HomeScreenUiState.Error(
-                                errorMessage = homeScreenErrorMapper.getErrorMessage(result.error)
+                                errorMessage = errorMessageMapper.getErrorMessage(result.error)
                             )
                         }
                     }
