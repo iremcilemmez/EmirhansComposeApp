@@ -1,5 +1,6 @@
 package com.eemmez.navigation.component
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Star
@@ -57,8 +58,7 @@ fun BottomNavigationBar(
             }
         },
         content = {
-            Navigation(navController = navController)
-            it
+            Navigation(modifier = modifier.padding(it), navController = navController)
         }
     )
 }

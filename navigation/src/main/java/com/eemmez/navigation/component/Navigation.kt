@@ -1,6 +1,7 @@
 package com.eemmez.navigation.component
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +16,9 @@ import com.vngrs.detail.domain.entity.DetailEntity
 
 @Suppress("DEPRECATION")
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(
+    modifier: Modifier = Modifier,
+    navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = "home"
