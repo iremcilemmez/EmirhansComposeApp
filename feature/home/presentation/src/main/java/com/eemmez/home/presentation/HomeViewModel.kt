@@ -7,6 +7,9 @@ import com.eemmez.home.domain.entity.ListItemEntity
 import com.eemmez.home.domain.usecase.AddToFavouritesUseCase
 import com.eemmez.home.domain.usecase.GetListUseCase
 import com.eemmez.home.presentation.mapper.ErrorMessageMapper
+import com.eemmez.home.presentation.state.HomeScreenUiEvent
+import com.eemmez.home.presentation.state.HomeScreenUiState
+import com.eemmez.localization.LocalizationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,14 +20,16 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getListUseCase: GetListUseCase,
     private val addToFavouritesUseCase: AddToFavouritesUseCase,
-    private val errorMessageMapper: ErrorMessageMapper
+    private val errorMessageMapper: ErrorMessageMapper,
+    private val localizationManager: LocalizationManager
 ) : ViewModel() {
 
-    private val _homeScreenUiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Initial)
+    private val _homeScreenUiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Loading)
     val homeScreenUiState: StateFlow<HomeScreenUiState> = _homeScreenUiState
-    private var currentPage = 0
+    private var currentList = mutableListOf<ListItemEntity>()
+    //private var currentPage = 0
 
-    private val _homeScreenUiEvent = MutableStateFlow<HomeScreenUiEvent>(HomeScreenUiEvent.Initial)
+    private val _homeScreenUiEvent = MutableStateFlow<HomeScreenUiEvent>(HomeScreenUiEvent.Idle)
     val homeScreenUiEvent: StateFlow<HomeScreenUiEvent> = _homeScreenUiEvent
 
     init {
@@ -38,8 +43,9 @@ class HomeViewModel @Inject constructor(
                     when (result) {
                         is Result.Success -> {
                             result.data?.let { response ->
+                                currentList = response.list.toMutableList()
                                 _homeScreenUiState.value =
-                                    HomeScreenUiState.Content(list = response.list)
+                                    HomeScreenUiState.Content(list = currentList)
                             }
                         }
 
@@ -63,7 +69,10 @@ class HomeViewModel @Inject constructor(
                 .collect { result ->
                     when (result) {
                         is Result.Success -> {
-                            _homeScreenUiState.value = HomeScreenUiState.Initial
+                            _homeScreenUiState.value = HomeScreenUiState.Content(currentList)
+                            _homeScreenUiEvent.value = HomeScreenUiEvent.AddFavouriteSuccess(
+                                localizationManager.getString(R.string.add_favourite_success)
+                            )
                         }
 
                         is Result.Loading -> {

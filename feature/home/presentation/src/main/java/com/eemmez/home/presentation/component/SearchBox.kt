@@ -1,6 +1,7 @@
 package com.eemmez.home.presentation.component
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -13,17 +14,18 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBox(onTextChanged: (String) -> Unit) {
+fun SearchBox(modifier: Modifier = Modifier.fillMaxWidth(), onTextChanged: (String) -> Unit) {
     val searchValue = rememberSaveable { mutableStateOf("") }
-    Column {
+    Box(modifier = modifier) {
         TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             value = searchValue.value,
             onValueChange = {
                 searchValue.value = it
                 onTextChanged.invoke(it)
             },
-            label = { Text("Search...") },
-            modifier = Modifier.padding(16.dp)
-        )
+            label = { Text("Search...") })
     }
 }

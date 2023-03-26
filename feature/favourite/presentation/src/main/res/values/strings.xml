@@ -3,4 +3,6 @@
     <string name="get_favourites_error">Get favourites error message</string>
     <string name="delete_favourite_error">Delete favourite error message</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="no_favourite">No favourite item</string>
+    <string name="delete_favourite_success">Successfully deleted!</string>
 </resources>

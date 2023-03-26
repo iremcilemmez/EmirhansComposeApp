@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class DeleteFromFavouritesUseCase @Inject constructor(
+class DeleteFavouriteUseCase @Inject constructor(
     private val favouriteRepository: FavouriteRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {

@@ -10,9 +10,9 @@ class ErrorMessageMapper @Inject constructor(
 ) {
     fun getErrorMessage(error: HomeError?): String =
         when (error) {
-            is HomeError.GetListError -> localizationManager.getString(R.string.error_message_list_some)
-            is HomeError.AddToFavouritesError -> localizationManager.getString(R.string.error_message_add_to_favourites)
-            else -> localizationManager.getString(R.string.error_message_list_unknown)
+            is HomeError.GetListError -> localizationManager.getString(R.string.some_list_error)
+            is HomeError.AddToFavouritesError -> localizationManager.getString(R.string.add_favourite_error)
+            else -> localizationManager.getString(R.string.list_unknown_error)
         }
 
 }

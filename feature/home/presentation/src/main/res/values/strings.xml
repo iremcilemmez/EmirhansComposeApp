@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_message_list_some">Some list error</string>
-    <string name="error_message_add_to_favourites">Can not add to favourites</string>
-    <string name="error_message_list_unknown">Unknown error</string>
+    <string name="some_list_error">Some list error</string>
+    <string name="add_favourite_error">Can not add to favourites</string>
+    <string name="list_unknown_error">Unknown error</string>
+    <string name="add_favourite_success">Successfully added!</string>
 </resources>

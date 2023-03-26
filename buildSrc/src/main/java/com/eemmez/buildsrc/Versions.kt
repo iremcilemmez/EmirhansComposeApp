@@ -32,7 +32,7 @@ object Sdk {
 object Android {
     const val core_ktx = "1.9.0"
     const val lifecycle = "2.6.0"
-    const val activity_compose= "1.6.1"
+    const val activity_compose = "1.6.1"
     const val compose = "1.3.3"
     const val material3 = "1.0.1"
     const val junit_ext = "1.1.5"
@@ -40,6 +40,10 @@ object Android {
     const val navigation_compose = "2.5.3"
     const val hilt_navigation_compose = "1.0.0"
     const val paging_compose = "1.0.0-alpha18"
+}
+
+object Google {
+    const val gson = "2.10.1"
 }
 
 object Hilt {

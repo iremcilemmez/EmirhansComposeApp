@@ -1,6 +1,5 @@
 package com.eemmez.navigation.component
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Star
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.eemmez.navigation.Navigation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +58,7 @@ fun BottomNavigationBar(
             }
         },
         content = {
-            Navigation(modifier = modifier.padding(it), navController = navController)
+            Navigation(navController = navController)
         }
     )
 }

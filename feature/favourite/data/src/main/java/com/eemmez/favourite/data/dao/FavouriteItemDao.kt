@@ -1,20 +1,18 @@
 package com.eemmez.favourite.data.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.eemmez.favourite.data.dto.FavouriteItem
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavouriteItemDao {
-    @Query("SELECT * from FavouriteItem")
+    @Query("SELECT * from FavouriteItems")
     suspend fun getAll(): List<FavouriteItem>
 
     @Insert
     suspend fun insert(favouriteItem: FavouriteItem)
 
-    @Delete
-    suspend fun delete(favouriteItem: FavouriteItem)
+    @Query("DELETE from FavouriteItems where name = :name AND image_url = :imageURL")
+    suspend fun delete(name: String, imageURL: String)
 }

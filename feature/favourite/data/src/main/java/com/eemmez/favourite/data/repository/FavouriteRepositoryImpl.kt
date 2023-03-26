@@ -1,5 +1,6 @@
 package com.eemmez.favourite.data.repository
 
+import android.util.Log
 import com.eemmez.common.domain.entity.Result
 import com.eemmez.favourite.data.mapper.toFavouriteItem
 import com.eemmez.favourite.data.mapper.toFavouriteItemEntity
@@ -28,13 +29,16 @@ class FavouriteRepositoryImpl @Inject constructor(
 
     override fun delete(favouriteItemEntity: FavouriteItemEntity): Flow<Result<Unit, FavouriteError.DeleteError>> =
         flow<Result<Unit, FavouriteError.DeleteError>> {
+            val favouriteItem = favouriteItemEntity.toFavouriteItem()
             favouriteDatabase.favouriteItemDao().delete(
-                favouriteItemEntity.toFavouriteItem()
+                name = favouriteItem.name,
+                imageURL = favouriteItem.imageURL
             )
             emit(Result.Success(Unit))
         }.onStart {
-            Result.Loading<Unit, FavouriteError.DeleteError>()
+            emit(Result.Loading())
         }.catch {
-            Result.Error<Unit, FavouriteError.DeleteError>(FavouriteError.DeleteError)
+            Log.e("Error", it.message.toString())
+            emit(Result.Error(FavouriteError.DeleteError))
         }
 }
