@@ -1,5 +1,7 @@
 package com.eemmez.navigation.component
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Star
@@ -20,9 +22,7 @@ import com.eemmez.navigation.Navigation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomNavigationBar(
-    modifier: Modifier = Modifier
-) {
+fun BottomNavigationBar() {
     val screens = listOf(
         BottomNavItem(
             name = "Home",
@@ -58,7 +58,9 @@ fun BottomNavigationBar(
             }
         },
         content = {
-            Navigation(navController = navController)
+            Box(modifier = Modifier.padding(it)) {
+                Navigation(navController = navController)
+            }
         }
     )
 }

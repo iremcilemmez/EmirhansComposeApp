@@ -26,7 +26,6 @@ class HomeViewModel @Inject constructor(
 
     private val _homeScreenUiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Loading)
     val homeScreenUiState: StateFlow<HomeScreenUiState> = _homeScreenUiState
-    private var currentList = mutableListOf<ListItemEntity>()
     //private var currentPage = 0
 
     private val _homeScreenUiEvent = MutableStateFlow<HomeScreenUiEvent>(HomeScreenUiEvent.Idle)
@@ -43,9 +42,8 @@ class HomeViewModel @Inject constructor(
                     when (result) {
                         is Result.Success -> {
                             result.data?.let { response ->
-                                currentList = response.list.toMutableList()
                                 _homeScreenUiState.value =
-                                    HomeScreenUiState.Content(list = currentList)
+                                    HomeScreenUiState.Content(list = response.list)
                             }
                         }
 
@@ -69,18 +67,17 @@ class HomeViewModel @Inject constructor(
                 .collect { result ->
                     when (result) {
                         is Result.Success -> {
-                            _homeScreenUiState.value = HomeScreenUiState.Content(currentList)
                             _homeScreenUiEvent.value = HomeScreenUiEvent.AddFavouriteSuccess(
                                 localizationManager.getString(R.string.add_favourite_success)
                             )
                         }
 
                         is Result.Loading -> {
-                            _homeScreenUiState.value = HomeScreenUiState.Loading
+                            _homeScreenUiEvent.value = HomeScreenUiEvent.Loading
                         }
 
                         is Result.Error -> {
-                            _homeScreenUiState.value = HomeScreenUiState.Error(
+                            _homeScreenUiEvent.value = HomeScreenUiEvent.Error(
                                 errorMessage = errorMessageMapper.getErrorMessage(result.error)
                             )
                         }
