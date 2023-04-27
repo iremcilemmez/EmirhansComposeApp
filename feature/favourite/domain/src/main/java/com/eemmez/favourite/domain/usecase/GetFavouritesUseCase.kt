@@ -7,7 +7,10 @@ import com.eemmez.favourite.domain.entity.FavouriteItemEntity
 import com.eemmez.favourite.domain.repository.FavouriteRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class GetFavouritesUseCase @Inject constructor(
@@ -15,5 +18,12 @@ class GetFavouritesUseCase @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
     operator fun invoke(): Flow<Result<List<FavouriteItemEntity>, FavouriteError.GetFavouritesError>> =
-        favouriteRepository.getAll().flowOn(ioDispatcher)
+        flow {
+            val result = favouriteRepository.getAll()
+            emit(result)
+        }.onStart {
+            emit(Result.Loading())
+        }.catch {
+            emit(Result.Error(FavouriteError.GetFavouritesError))
+        }.flowOn(ioDispatcher)
 }

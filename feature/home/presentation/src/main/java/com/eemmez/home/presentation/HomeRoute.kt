@@ -11,11 +11,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.eemmez.home.domain.entity.ListItemEntity
 import com.eemmez.home.presentation.component.List
 import com.eemmez.home.presentation.component.SearchBox
+import com.eemmez.home.presentation.component.HomeTag
 import com.eemmez.home.presentation.component.Template
 import com.eemmez.home.presentation.state.HomeScreenUiEvent
 import com.eemmez.home.presentation.state.HomeScreenUiState
@@ -25,8 +27,9 @@ import com.vngrs.common.presentation.component.ProgressDialog
 
 @Composable
 fun HomeRoute(
+    modifier: Modifier = Modifier.testTag(HomeTag.route),
     onItemClick: (ListItemEntity) -> Unit,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val homeScreenUiState by viewModel.homeScreenUiState.collectAsStateWithLifecycle()
     val homeScreenUiEvent by viewModel.homeScreenUiEvent.collectAsStateWithLifecycle()
@@ -102,7 +105,6 @@ private fun HomeScreen(
             .fillMaxSize()
             .wrapContentSize(align = Alignment.BottomCenter)
     ) {
-        SnackbarHost(hostState = snackbarHostState)
+        SnackbarHost(modifier = Modifier.testTag(HomeTag.snackbar), hostState = snackbarHostState)
     }
-
 }

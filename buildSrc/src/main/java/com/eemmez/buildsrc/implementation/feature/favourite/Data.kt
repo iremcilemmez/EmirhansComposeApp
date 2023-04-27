@@ -24,7 +24,19 @@ private val favouriteDataDependencies = listOf(
     Dependency("androidx.room:room-compiler:${Room.version}", config = Config.Kapt),
     Dependency("androidx.room:room-testing:${Room.version}", config = Config.TestImplementation),
     Dependency("org.jetbrains.kotlinx:kotlinx-serialization-json:${Kotlin.json_serialization}"),
-    Dependency("junit:junit:${JUnit.version}")
+    Dependency("junit:junit:${JUnit.version}", config = Config.AndroidTestImplementation),
+    Dependency(
+        "androidx.test.ext:junit:${Android.junit_ext}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "androidx.test:runner:${Android.test_runner}",
+        config = Config.AndroidTestImplementation
+    )
 )
 
 fun DependencyHandler.favouriteDataDependencies() {

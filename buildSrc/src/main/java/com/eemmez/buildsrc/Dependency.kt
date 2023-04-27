@@ -16,6 +16,7 @@ sealed class Config(val name: String) {
     object Classpath : Config("classpath")
     object TestImplementation : Config("testImplementation")
     object AndroidTestImplementation : Config("androidTestImplementation")
+    object KaptAndroidTest : Config("kaptAndroidTest")
     object DebugImplementation : Config("debugImplementation")
 }
 

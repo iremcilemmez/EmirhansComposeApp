@@ -26,7 +26,6 @@ class HomeViewModel @Inject constructor(
 
     private val _homeScreenUiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Loading)
     val homeScreenUiState: StateFlow<HomeScreenUiState> = _homeScreenUiState
-    //private var currentPage = 0
 
     private val _homeScreenUiEvent = MutableStateFlow<HomeScreenUiEvent>(HomeScreenUiEvent.Idle)
     val homeScreenUiEvent: StateFlow<HomeScreenUiEvent> = _homeScreenUiEvent

@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,7 +21,8 @@ fun SearchBox(modifier: Modifier = Modifier.fillMaxWidth(), onTextChanged: (Stri
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .testTag(HomeTag.searchTextField),
             value = searchValue.value,
             onValueChange = {
                 searchValue.value = it

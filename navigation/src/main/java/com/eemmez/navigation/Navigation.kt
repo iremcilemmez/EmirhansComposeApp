@@ -6,15 +6,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.eemmez.detail.presentation.DetailNavigation
 import com.eemmez.detail.presentation.DetailScreen
+import com.eemmez.favourite.presentation.FavouriteNavigation
 import com.eemmez.favourite.presentation.FavouriteRoute
+import com.eemmez.home.presentation.HomeNavigation
 import com.eemmez.home.presentation.HomeRoute
 import com.eemmez.navigation.mapper.toDetailEntity
 import com.eemmez.navigation.util.ParcelableType
 import com.eemmez.navigation.util.extension.getSafeParcelable
 import com.vngrs.detail.domain.entity.DetailEntity
 
-@Suppress("DEPRECATION")
 @Composable
 fun Navigation(
     navController: NavHostController,
@@ -22,33 +24,31 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "home"
+        startDestination = HomeNavigation.route
     ) {
-        composable("home") {
+        composable(HomeNavigation.route) {
             HomeRoute(
                 onItemClick = { homeListItem ->
-                    val detailEntityArg =
-                        viewModel.getParcelableString(homeListItem.toDetailEntity())
-                    navController.navigate("detail/$detailEntityArg")
+                    val detailEntityArg = viewModel.getParcelableString(homeListItem.toDetailEntity())
+                    navController.navigate("${DetailNavigation.route}/$detailEntityArg")
                 }
             )
         }
-        composable("favourite") {
+        composable(FavouriteNavigation.route) {
             FavouriteRoute(
                 onItemClick = { favouriteListItem ->
-                    val detailEntityArg =
-                        viewModel.getParcelableString(favouriteListItem.toDetailEntity())
-                    navController.navigate("detail/$detailEntityArg")
+                    val detailEntityArg = viewModel.getParcelableString(favouriteListItem.toDetailEntity())
+                    navController.navigate("${DetailNavigation.route}/$detailEntityArg")
                 }
             )
         }
         composable(
-            route = "detail/{detailEntityArg}",
-            arguments = listOf(navArgument("detailEntityArg") {
+            route = DetailNavigation.route,
+            arguments = listOf(navArgument(DetailNavigation.detailEntityArg) {
                 type = ParcelableType(DetailEntity::class.java, viewModel.gson())
             })
         ) {
-            it.arguments?.getSafeParcelable("detailEntityArg", DetailEntity::class.java)
+            it.arguments?.getSafeParcelable(DetailNavigation.detailEntityArg, DetailEntity::class.java)
                 ?.let { detailEntityArg ->
                     DetailScreen(detailEntity = detailEntityArg)
                 }

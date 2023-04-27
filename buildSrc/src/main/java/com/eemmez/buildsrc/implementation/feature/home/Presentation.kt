@@ -20,6 +20,11 @@ private val homePresentationDependencyList = listOf(
     Dependency("io.coil-kt:coil-compose:${Coil.version}"),
     Dependency("com.github.emirhanemmez:localizationmanager:${LocalizationManager.version}"),
     Dependency("junit:junit:${JUnit.version}", config = Config.TestImplementation),
+    Dependency("io.mockk:mockk:${Mockk.version}", config = Config.TestImplementation),
+    Dependency(
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}",
+        config = Config.TestImplementation
+    ),
     Dependency(
         "androidx.test.ext:junit:${Android.junit_ext}",
         config = Config.AndroidTestImplementation

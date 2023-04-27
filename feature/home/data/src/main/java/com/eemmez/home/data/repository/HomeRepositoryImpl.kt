@@ -11,39 +11,25 @@ import com.eemmez.home.domain.entity.GetListResponseEntity
 import com.eemmez.home.domain.entity.HomeError
 import com.eemmez.home.domain.entity.ListItemEntity
 import com.eemmez.home.domain.repository.HomeRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
     private val homeService: HomeService,
     private val favouriteDatabase: FavouriteDatabase
 ) : HomeRepository {
-    override fun getList(
+    override suspend fun getList(
         pageNumber: Int?,
         search: String?
-    ): Flow<Result<GetListResponseEntity, HomeError>> =
-        flow<Result<GetListResponseEntity, HomeError>> {
-            val response = homeService.getList(pageNumber, search)
-            when (response.status) {
-                Status.SUCCESS -> emit(Result.Success(response.result?.toListResponseEntity()))
-                Status.FAIL -> emit(Result.Error(HomeErrorMapper.map(response.errorCode)))
-            }
-        }.onStart {
-            emit(Result.Loading())
-        }.catch {
-            emit(Result.Error(HomeError.UnknownError))
+    ): Result<GetListResponseEntity, HomeError> {
+        val response = homeService.getList(pageNumber, search)
+        return when (response.status) {
+            Status.SUCCESS -> Result.Success(response.result?.toListResponseEntity())
+            Status.FAIL -> Result.Error(HomeErrorMapper.map(response.errorCode))
         }
+    }
 
-    override fun addToFavourites(listItemEntity: ListItemEntity): Flow<Result<Unit, HomeError>> =
-        flow<Result<Unit, HomeError>> {
-            favouriteDatabase.favouriteItemDao().insert(listItemEntity.toFavouriteItem())
-            emit(Result.Success(Unit))
-        }.onStart {
-            emit(Result.Loading())
-        }.catch {
-            emit(Result.Error(HomeError.AddToFavouritesError))
-        }
+    override suspend fun addToFavourites(listItemEntity: ListItemEntity): Result<Unit, HomeError> {
+        favouriteDatabase.favouriteItemDao().insert(listItemEntity.toFavouriteItem())
+        return Result.Success(Unit)
+    }
 }

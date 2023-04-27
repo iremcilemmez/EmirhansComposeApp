@@ -24,7 +24,39 @@ private val navigationDependencies = listOf(
     Dependency("androidx.compose.material3:material3:${Android.material3}"),
     Dependency("androidx.core:core-ktx:${Android.core_ktx}"),
     Dependency("androidx.navigation:navigation-compose:${Android.navigation_compose}"),
-    Dependency("com.google.code.gson:gson:${Google.gson}")
+    Dependency("com.google.code.gson:gson:${Google.gson}"),
+    Dependency(
+        "androidx.test.ext:junit:${Android.junit_ext}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "androidx.test.espresso:espresso-core:${Android.espresso}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "androidx.compose.ui:ui-test-junit4:${Android.compose}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "androidx.compose.ui:ui-tooling:${Android.compose}",
+        config = Config.DebugImplementation
+    ),
+    Dependency(
+        "androidx.compose.ui:ui-test-manifest:${Android.compose}",
+        config = Config.DebugImplementation
+    ),
+    Dependency(
+        "androidx.navigation:navigation-testing:${Android.navigation_compose}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "com.google.dagger:hilt-android-testing:${Hilt.version}",
+        config = Config.AndroidTestImplementation
+    ),
+    Dependency(
+        "com.google.dagger:hilt-android-compiler:${Hilt.version}",
+        config = Config.KaptAndroidTest
+    )
 )
 
 fun DependencyHandler.navigationDependencies() {

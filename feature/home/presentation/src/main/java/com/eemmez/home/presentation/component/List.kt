@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
@@ -32,7 +33,10 @@ fun List(
     onItemClick: (ListItemEntity) -> Unit,
     onItemLongClick: (ListItemEntity) -> Unit
 ) {
-    LazyColumn(Modifier.padding(top = 72.dp)) {
+    LazyColumn(
+        Modifier
+            .padding(top = 72.dp)
+            .testTag(HomeTag.list)) {
         items(listItems) { item ->
             ListItem(listItem = item, onItemClick = onItemClick, onItemLongClick = onItemLongClick)
         }
@@ -69,14 +73,16 @@ fun ListItem(
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .requiredHeight(200.dp),
+                    .requiredHeight(200.dp)
+                    .testTag(HomeTag.listItemImage),
                 contentScale = ContentScale.FillBounds,
                 painter = rememberAsyncImagePainter(listItem.imageURL),
                 contentDescription = "Image of the pokemon"
             )
             Text(
                 modifier = Modifier
-                    .padding(0.dp, 10.dp, 0.dp, 0.dp),
+                    .padding(0.dp, 10.dp, 0.dp, 0.dp)
+                    .testTag(HomeTag.listItemName),
                 text = listItem.name,
                 style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis

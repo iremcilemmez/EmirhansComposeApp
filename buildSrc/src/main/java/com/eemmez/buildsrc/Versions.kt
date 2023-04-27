@@ -40,6 +40,7 @@ object Android {
     const val navigation_compose = "2.5.3"
     const val hilt_navigation_compose = "1.0.0"
     const val paging_compose = "1.0.0-alpha18"
+    const val test_runner = "1.5.2"
 }
 
 object Google {
@@ -68,4 +69,8 @@ object LocalizationManager {
 
 object JUnit {
     const val version = "4.13.2"
+}
+
+object Mockk {
+    const val version = "1.13.5"
 }

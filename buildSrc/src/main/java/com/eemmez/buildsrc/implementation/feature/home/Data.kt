@@ -27,7 +27,11 @@ private val homeDataDependencies = listOf(
     Dependency("androidx.room:room-testing:${Room.version}", config = Config.TestImplementation),
     Dependency("io.ktor:ktor-client-core:${Ktor.version}"),
     Dependency("org.jetbrains.kotlinx:kotlinx-serialization-json:${Kotlin.json_serialization}"),
-    Dependency("junit:junit:${JUnit.version}", config = Config.TestImplementation)
+    Dependency("junit:junit:${JUnit.version}", config = Config.TestImplementation),
+    Dependency(
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}",
+        config = Config.TestImplementation
+    )
 )
 
 fun DependencyHandler.homeDataDependencies() {

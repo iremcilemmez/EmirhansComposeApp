@@ -6,7 +6,6 @@ import androidx.navigation.NavType
 import com.eemmez.navigation.util.extension.getSafeParcelable
 import com.google.gson.Gson
 
-@Suppress("DEPRECATION")
 class ParcelableType<T : Parcelable>(
     private val clazz: Class<T>,
     private val gson: Gson

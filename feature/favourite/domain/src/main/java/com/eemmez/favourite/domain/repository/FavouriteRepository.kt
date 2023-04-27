@@ -6,7 +6,7 @@ import com.eemmez.favourite.domain.entity.FavouriteItemEntity
 import kotlinx.coroutines.flow.Flow
 
 interface FavouriteRepository {
-    fun getAll(): Flow<Result<List<FavouriteItemEntity>, FavouriteError.GetFavouritesError>>
+    suspend fun getAll(): Result<List<FavouriteItemEntity>, FavouriteError.GetFavouritesError>
 
-    fun delete(favouriteItemEntity: FavouriteItemEntity): Flow<Result<Unit, FavouriteError.DeleteError>>
+    suspend fun delete(favouriteItemEntity: FavouriteItemEntity): Result<Unit, FavouriteError.DeleteError>
 }

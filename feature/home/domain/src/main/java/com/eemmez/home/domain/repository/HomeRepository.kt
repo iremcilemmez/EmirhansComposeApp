@@ -7,6 +7,6 @@ import com.eemmez.home.domain.entity.ListItemEntity
 import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
-    fun getList(pageNumber: Int?, search: String?): Flow<Result<GetListResponseEntity, HomeError>>
-    fun addToFavourites(listItemEntity: ListItemEntity): Flow<Result<Unit, HomeError>>
+    suspend fun getList(pageNumber: Int?, search: String?): Result<GetListResponseEntity, HomeError>
+    suspend fun addToFavourites(listItemEntity: ListItemEntity): Result<Unit, HomeError>
 }
