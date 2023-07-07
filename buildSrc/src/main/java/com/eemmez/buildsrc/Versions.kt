@@ -12,8 +12,8 @@ object Gradle {
 }
 
 object Kotlin {
-    const val version = "1.8.10"
-    const val compiler_version = "1.4.3"
+    const val version = "1.8.22"
+    const val compiler_version = "1.4.8"
     const val json_serialization = "1.5.0"
     const val coroutines = "1.6.4"
 }

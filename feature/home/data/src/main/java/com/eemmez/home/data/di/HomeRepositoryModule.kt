@@ -1,6 +1,5 @@
 package com.eemmez.home.data.di
 
-import com.eemmez.favourite.data.dao.FavouriteItemDao
 import com.eemmez.favourite.data.service.FavouriteDatabase
 import com.eemmez.home.data.repository.HomeRepositoryImpl
 import com.eemmez.home.data.service.HomeService
