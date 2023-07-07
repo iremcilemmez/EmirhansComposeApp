@@ -19,7 +19,7 @@ object Kotlin {
 }
 
 object Java {
-    val version = JavaVersion.VERSION_18
+    val version = JavaVersion.VERSION_17
     const val inject = 1
 }
 
