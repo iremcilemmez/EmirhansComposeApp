@@ -4,7 +4,7 @@ import org.gradle.api.JavaVersion
 
 object Project {
     const val version_code = 1
-    const val version_name = "1.0"
+    const val version_name = "1.0.0"
 }
 
 object Gradle {
